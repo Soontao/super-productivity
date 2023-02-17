@@ -7,6 +7,7 @@ import { ConfigModule } from '../../features/config/config.module';
 import { CommonModule } from '@angular/common';
 import { DropboxModule } from './dropbox/dropbox.module';
 import { WebDavModule } from './web-dav/web-dav.module';
+import { AlistModule } from './alist/alist.module';
 import { DialogSyncConflictComponent } from './dialog-dbx-sync-conflict/dialog-sync-conflict.component';
 import { DialogSyncPermissionComponent } from './dialog-sync-permission/dialog-sync-permission.component';
 import { DialogGetAndEnterAuthCodeComponent } from './dialog-get-and-enter-auth-code/dialog-get-and-enter-auth-code.component';
@@ -27,6 +28,7 @@ import { LocalFileSyncModule } from './local-file-sync/local-file-sync.module';
     DropboxModule,
     LocalFileSyncModule,
     WebDavModule,
+    AlistModule,
   ],
 })
 export class SyncModule {}

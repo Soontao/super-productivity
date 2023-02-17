@@ -105,6 +105,7 @@ export type SyncConfig = Readonly<{
 
   dropboxSync: DropboxSyncConfig;
   webDav: WebDavConfig;
+  aList: WebDavConfig;
   localFileSync: LocalFileSyncConfig;
 }>;
 

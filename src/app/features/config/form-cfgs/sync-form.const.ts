@@ -180,5 +180,56 @@ export const SYNC_FORM: ConfigFormSection<SyncConfig> = {
         },
       ],
     },
+    {
+      hideExpression: (m, v, field) =>
+        field?.parent?.model.syncProvider !== SyncProvider.WebDAV,
+      key: 'aList',
+      fieldGroup: [
+        {
+          type: 'tpl',
+          templateOptions: {
+            tag: 'p',
+            // text: `<p>Please open the following link and copy the auth code provided there</p>`,
+            text: T.F.SYNC.FORM.WEB_DAV.CORS_INFO,
+          },
+        },
+        {
+          key: 'baseUrl',
+          type: 'input',
+          templateOptions: {
+            required: true,
+            label: T.F.SYNC.FORM.WEB_DAV.L_BASE_URL,
+            description:
+              '* https://your-next-cloud/nextcloud/remote.php/dav/files/yourUserName',
+          },
+        },
+        {
+          key: 'userName',
+          type: 'input',
+          templateOptions: {
+            required: true,
+            label: T.F.SYNC.FORM.WEB_DAV.L_USER_NAME,
+          },
+        },
+        {
+          key: 'password',
+          type: 'input',
+          templateOptions: {
+            type: 'password',
+            required: true,
+            label: T.F.SYNC.FORM.WEB_DAV.L_PASSWORD,
+          },
+        },
+        {
+          key: 'syncFilePath',
+          type: 'input',
+          templateOptions: {
+            required: true,
+            label: T.F.SYNC.FORM.WEB_DAV.L_SYNC_FILE_PATH,
+            description: '* my-sync-file.json',
+          },
+        },
+      ],
+    },
   ],
 };

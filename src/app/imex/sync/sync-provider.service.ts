@@ -28,6 +28,7 @@ import { SyncTriggerService } from './sync-trigger.service';
 import { MatDialog } from '@angular/material/dialog';
 import { DataImportService } from './data-import.service';
 import { WebDavSyncService } from './web-dav/web-dav-sync.service';
+import { AListSyncService } from './alist/alist-sync.service';
 import { SnackService } from '../../core/snack/snack.service';
 import { isValidAppData } from './is-valid-app-data.util';
 import { truncate } from '../../util/truncate';
@@ -63,6 +64,8 @@ export class SyncProviderService {
           } else {
             return this._localFileSyncElectronService;
           }
+        case SyncProvider.AList:
+          return this._aListSyncService;
         default:
           return null;
       }
@@ -93,6 +96,7 @@ export class SyncProviderService {
     private _dropboxSyncService: DropboxSyncService,
     private _dataImportService: DataImportService,
     private _webDavSyncService: WebDavSyncService,
+    private _aListSyncService: AListSyncService,
     private _localFileSyncElectronService: LocalFileSyncElectronService,
     private _localFileSyncAndroidService: LocalFileSyncAndroidService,
     private _globalConfigService: GlobalConfigService,
@@ -103,7 +107,7 @@ export class SyncProviderService {
     private _compressionService: CompressionService,
     private _snackService: SnackService,
     private _matDialog: MatDialog,
-  ) {}
+  ) { }
 
   async sync(): Promise<SyncResult> {
     const currentProvider = await this.currentProvider$.pipe(take(1)).toPromise();

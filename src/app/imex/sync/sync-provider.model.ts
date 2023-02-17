@@ -6,6 +6,7 @@ export enum SyncProvider {
   'Dropbox' = 'Dropbox',
   'WebDAV' = 'WebDAV',
   'LocalFile' = 'LocalFile',
+  'AList' = 'AList',
 }
 
 export interface SyncProviderServiceInterface {
