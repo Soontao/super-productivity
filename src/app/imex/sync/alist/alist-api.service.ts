@@ -42,7 +42,7 @@ export class AListApiService {
   constructor(
     private _globalConfigService: GlobalConfigService,
     private _dataInitService: DataInitService,
-  ) { }
+  ) {}
 
   async upload({ data, path }: { data: string; path: string }): Promise<void> {
     await this._isReady$.toPromise();
@@ -52,9 +52,26 @@ export class AListApiService {
       password: cfg.password,
     });
 
-    return await client.putFileContents(path, JSON.stringify(data), {
-      contentLength: false,
+    const content = JSON.stringify(data);
+    const rev = JSON.stringify({
+      rev: Array.from(
+        new Uint8Array(
+          await crypto.subtle.digest('SHA-256', new TextEncoder().encode(content)),
+        ),
+      )
+        .map((b) => b.toString(16).padStart(2, '0'))
+        .join(''),
+      'last-modified': new Date().toISOString(),
     });
+    const [r] = await Promise.all([
+      client.putFileContents(path, JSON.stringify(data), {
+        contentLength: false,
+      }),
+      client.putFileContents(path + '.rev', rev, {
+        contentLength: false,
+      }),
+    ]);
+    return r;
   }
 
   async getMetaData(path: string): Promise<AListHeadResponse> {

@@ -204,7 +204,7 @@ const _migrateSyncCfg = (config: GlobalConfigState): GlobalConfigState => {
             // copy existing values if any
             ...(config.sync as any)?.webDav,
           },
-          aList:{
+          aList: {
             ...DEFAULT_GLOBAL_CONFIG.sync.aList,
             // copy existing values if any
             ...(config.sync as any)?.aList,

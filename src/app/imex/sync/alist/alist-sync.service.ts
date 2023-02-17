@@ -48,7 +48,10 @@ export class AListSyncService implements SyncProviderServiceInterface {
       };
     } catch (e: unknown) {
       const isAxiosError = !!(e && (e as any).response && (e as any).response.status);
-      if (isAxiosError && (e as any).response.status === 404) {
+      if (
+        (isAxiosError && (e as any).response.status === 404) ||
+        (e as any).status === 404
+      ) {
         return 'NO_REMOTE_DATA';
       }
       console.error(e);

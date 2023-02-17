@@ -45,6 +45,7 @@ export const SYNC_FORM: ConfigFormSection<SyncConfig> = {
         options: [
           { label: SyncProvider.Dropbox, value: SyncProvider.Dropbox },
           { label: SyncProvider.WebDAV, value: SyncProvider.WebDAV },
+          { label: SyncProvider.AList, value: SyncProvider.AList },
           ...(IS_ELECTRON ||
           (IS_ANDROID_WEB_VIEW &&
             (androidInterface as any).grantFilePermission &&
@@ -182,7 +183,7 @@ export const SYNC_FORM: ConfigFormSection<SyncConfig> = {
     },
     {
       hideExpression: (m, v, field) =>
-        field?.parent?.model.syncProvider !== SyncProvider.WebDAV,
+        field?.parent?.model.syncProvider !== SyncProvider.AList,
       key: 'aList',
       fieldGroup: [
         {

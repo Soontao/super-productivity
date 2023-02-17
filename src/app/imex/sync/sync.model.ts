@@ -46,6 +46,7 @@ export interface LocalSyncMetaModel {
   [SyncProvider.WebDAV]: LocalSyncMetaForProvider;
   [SyncProvider.Dropbox]: LocalSyncMetaForProvider;
   [SyncProvider.LocalFile]: LocalSyncMetaForProvider;
+  [SyncProvider.AList]: LocalSyncMetaForProvider;
 }
 
 export type AppBaseDataEntityLikeStates =
